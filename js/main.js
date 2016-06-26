@@ -6,7 +6,7 @@ var MapViewModel = function() {
 
     self.markers = ko.observableArray([]);
     self.currentFilter = ko.observable();
-    var init = function() {
+    init = function() {
 
         var mapOptions = {
             disableDefaultUI: true
@@ -25,7 +25,8 @@ var MapViewModel = function() {
                     pinPoster(data.response.venues);
                 })
                 .fail(function (err) {
-                    console.error(err);
+                    alert("Request Failed");
+
                 });
         };
 
@@ -81,8 +82,8 @@ var MapViewModel = function() {
         getData();
     };
 
-    // Calls the initializeMap() function when the page loads
-    window.addEventListener('load', init);
+    // Calls the init() function when the page loads
+    //window.addEventListener('load', init);
 
     // Vanilla JS way to listen for resizing of the window
     // and adjust map bounds
@@ -120,8 +121,12 @@ var MapViewModel = function() {
     self.setCurrent = function(marker) {
         google.maps.event.trigger(marker, 'click');
     };
-};
 
+};
+function googleError() {
+    alert('Failed to load google maps');
+    // and this will be called when there was an error
+}
 
 
 $(function(){

@@ -4,12 +4,11 @@
     <title>Neighborhood Map</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGM-PX_idhIJhe7Th-9qs2wy9j7lGAaGc&libraries=places"></script>
-    <script type='text/javascript' src='js/knockout-3.4.0.js'></script>
+    <script src='js/knockout-3.4.0.js'></script>
     <script src="js/main.js"></script>
-    <!-- Latest compiled and minified CSS -->
+    <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGM-PX_idhIJhe7Th-9qs2wy9j7lGAaGc&callback=init" onerror="googleError()"></script>
 
 </head>
 <body>
@@ -32,21 +31,26 @@
             </li>
         </ul>
     </nav>
-    <div id="map"></div></main>
+    <div id="map"></div>
+    </main>
 
     <script>
       /*
        * Open the drawer when the menu ison is clicked.
        */
       var menu = document.querySelector('#menu');
-      var main = document.querySelector('main');
+      var ul = document.querySelector('ul');
+      var map = document.querySelector('#map');
       var drawer = document.querySelector('.nav');
 
       menu.addEventListener('click', function(e) {
         drawer.classList.toggle('open');
         e.stopPropagation();
       });
-      main.addEventListener('click', function() {
+      ul.addEventListener('click', function() {
+        drawer.classList.remove('open');
+      });
+      map.addEventListener('click', function() {
         drawer.classList.remove('open');
       });
 
