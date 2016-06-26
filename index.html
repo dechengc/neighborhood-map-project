@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neighborhood Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGM-PX_idhIJhe7Th-9qs2wy9j7lGAaGc&libraries=places"></script>
+    <script type='text/javascript' src='js/knockout-3.4.0.js'></script>
+    <script src="js/main.js"></script>
+    <!-- Latest compiled and minified CSS -->
+
+</head>
+<body>
+    <header class="header">
+        <div class="header__inner">
+            <h1 class="header__title">Hotel in San Jose</h1>
+            <a id="menu" class="header__menu">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+    <main class="main">
+    <nav id="drawer" class="nav">
+        <input data-bind="value: currentFilter, valueUpdate: 'afterkeydown'" />
+        <ul data-bind="foreach: filterMmarkers">
+            <li class="nav__item " data-bind="click: $parent.setCurrent">
+                <div data-bind="text: name"></div>
+            </li>
+        </ul>
+    </nav>
+    <div id="map"></div></main>
+
+    <script>
+      /*
+       * Open the drawer when the menu ison is clicked.
+       */
+      var menu = document.querySelector('#menu');
+      var main = document.querySelector('main');
+      var drawer = document.querySelector('.nav');
+
+      menu.addEventListener('click', function(e) {
+        drawer.classList.toggle('open');
+        e.stopPropagation();
+      });
+      main.addEventListener('click', function() {
+        drawer.classList.remove('open');
+      });
+
+    </script>
+</body>
+</html>
